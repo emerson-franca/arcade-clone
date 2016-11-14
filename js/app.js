@@ -50,7 +50,7 @@ Enemy.prototype.render = function() {
 var enemy1 = new Enemy(100,100);
 var enemy2 = new Enemy(80,200);
 var enemy3 = new Enemy(120,300);
-var allEnemies = [enemy1,enemy2,enemy3,enemy4];
+var allEnemies = [enemy1,enemy2,enemy3];
 
 // Now write your own player class
 // This class requires an update(), render() and
