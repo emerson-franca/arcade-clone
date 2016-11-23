@@ -1,4 +1,5 @@
-A clone of classic arcade game
+
+#Um clone de um clássico dos arcades
 
 ##Instruções do jogo
 
