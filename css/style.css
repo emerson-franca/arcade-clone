@@ -1,3 +1,37 @@
 body {
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Press Start 2P', cursive;
+
+}
+
+canvas {
+	order: 2;
+}
+
+#star{
+	margin-top: 120px;
+	font-size: 2em;
+}
+
+#best {
+	margin-top: 120px;
+	font-size: 2em;
+}
+
+#starValue, #scoreValue {
+	text-align: center;
+}
+
+
+#contents {
+	order: 1;
+	width: 192px;
+	text-align: center;
+}
+
+#scores {
+	order: 3;
+	text-align: center;
+	width: 192px;
 }
