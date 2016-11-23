@@ -5,6 +5,19 @@ var velocity = 100;
 var score = document.getElementById("scoreValue");
 var scoreValue = 0;
 
+//general functions
+
+var gameReset = function(){
+    alert("Game Over!");
+    createHearts();
+    starValue = 0;
+    stars.innerHTML = starValue;
+    allEnemies.forEach(function(enemy) {
+        enemy.speed = 100;
+    }); 
+    velocity = 100;  
+};
+
 
 var bestScore = function(){
     if (starValue > scoreValue) {
@@ -13,6 +26,27 @@ var bestScore = function(){
     }
 }
 
+
+var checkCollisions = function() {
+   for (var i = 0; i < allEnemies.length; i++) {
+        if (player.x < allEnemies[i].x + 65 &&
+            player.x + 55 > allEnemies[i].x && player.y < allEnemies[i].y + 40 &&  60 + player.y > allEnemies[i].y) {
+            console.log("bateeeeeeeeu!!!");
+            allHearts.pop();
+            if(allHearts.length == 0){
+                gameReset();
+            }
+            player.reset();
+        }
+    }     
+};
+
+var calculateStars = function(){
+    stars.innerHTML = ++starValue;
+};
+
+
+//end of general functions
 
 // Enemies our player must avoid
 var Enemy = function(x,y,speed) {
@@ -54,8 +88,7 @@ var createEnemies = function(){
 };
 
 
-createEnemies();
-
+//end of enemy function
 
 //player function
 
@@ -114,30 +147,8 @@ Player.prototype.reset = function(){
 }
 
 
-var gameReset = function(){
-    alert("Game Over!");
-    createHearts();
-    starValue = 0;
-    stars.innerHTML = starValue;
-    allEnemies.forEach(function(enemy) {
-        enemy.speed = 100;
-    }); 
-    velocity = 100;  
-};
+//end of player function
 
-var checkCollisions = function() {
-   for (var i = 0; i < allEnemies.length; i++) {
-        if (player.x < allEnemies[i].x + 65 &&
-            player.x + 55 > allEnemies[i].x && player.y < allEnemies[i].y + 40 &&  60 + player.y > allEnemies[i].y) {
-            console.log("bateeeeeeeeu!!!");
-            allHearts.pop();
-            if(allHearts.length == 0){
-                gameReset();
-            }
-            player.reset();
-        }
-    }     
-};
 
 // heart function
 
@@ -194,30 +205,24 @@ Star.prototype.createStar = function(){
     this.y = positionsY[Math.floor((Math.random() * 2))];
 };
 
-var star = new Star(100,100);
 
 //end of star function
 
 
-
+var star = new Star(100,100);
 var heart3 = new Heart(350, 520);
 var heart2 = new Heart(400, 520);
 var heart1 = new Heart(450,520);
 allHearts = [heart1, heart2, heart3];
 var player = new Player();
 
-
-//text functions
-var calculateStars = function(){
-    stars.innerHTML = ++starValue;
-};
-
+createEnemies();
 
 
 
 
 // This listens for key presses and sends the keys to your
-// Player.handleInput() method.
+// Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
